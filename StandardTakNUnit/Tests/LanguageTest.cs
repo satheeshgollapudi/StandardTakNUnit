@@ -26,7 +26,7 @@ namespace test
         [Test]
         public void givenLoggedInAndAddingNewLanguage_whenAddLanguage_thenLanguageIsAdded()
         {
-            //loginSteps.doLogin();
+            
 
             homePageSteps.validateIsLoggedIn();
             Thread.Sleep(2000);

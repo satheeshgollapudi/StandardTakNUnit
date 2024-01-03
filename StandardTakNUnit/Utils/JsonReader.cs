@@ -21,12 +21,7 @@ namespace test.Utils
         public String year { get; set; }
 
 
-        /* public static Object loadData(String path)
-         {
-             using StreamReader reader = new StreamReader(path);
-             var jsonContent = reader.ReadToEnd();
-             return JsonConvert.DeserializeObject<Object>(jsonContent);
-         } */
+       
 
 
 
@@ -39,14 +34,7 @@ namespace test.Utils
             return jr;
         }
 
-        /*public static JsonReader educationReader()
-        {
-
-
-            string json = File.ReadAllText(@"C:\Users\gskum\OneDrive\Documents\SatheeshProject\StandardTaskNunitFramework\MarNunitPOMExmaple\TestData\Education.json");
-            JsonReader er = JsonConvert.DeserializeObject<JsonReader>(json);
-            return er;
-        }*/
+      
 
 
     }

@@ -42,8 +42,8 @@ namespace test.Pages.Components.SignIn
             //Enter the valid email address and password.
             emailTextbox.SendKeys(userInformation.getEmail());
             passwordTextbox.SendKeys(userInformation.getPassword());
-            //Click on "Login" button
 
+            //Click on "Login" button
             loginButton.Click();
             Thread.Sleep(3000);
 

@@ -13,8 +13,8 @@ public class ProfileCertificationOverviewComponent : GobalHelper
     private IWebElement newTitleAddedCell;
     private IWebElement newDegreeAddedCell;
     private IWebElement newGraduationYearAddedCell;
-    //private IWebElement messageWindow;
-    //private IWebElement closeMessageIcon;
+    private IWebElement messageWindow;
+    private IWebElement closeMessageIcon;
     private string message = "";
 
 

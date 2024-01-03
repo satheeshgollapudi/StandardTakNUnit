@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using test.Model;
 using test.Utils;
 
 namespace test.Pages.Components
@@ -70,7 +71,10 @@ namespace test.Pages.Components
 
 
         public void addLanguage(Model.LanguageModel language)
+           
         {
+         
+
             renderAddComponents();
 
             //Enter record details

@@ -84,9 +84,6 @@ namespace test.Steps
             JsonReader er = JsonReader.read(path);
             education.setTitle(er.title);
 
-   
-            //IWebElement deleteButton = driver.FindElement(By.XPath("//td[text()='"+education.getTitle()+"']/ancestor::tbody/descendant::i[2]"));
-            //deleteButton.Click();
             addAndUpdateEducationComponent.deleteEducation(education);
 
             String acutalSuccessMessage = addAndUpdateEducationComponent.getSuccessMessage();

@@ -24,7 +24,7 @@ namespace test
         [Test]
         public void givenLoggedInAndAddingNewCertificate_whenAddCertificate_thenCertificateIsAdded()
         {
-            //loginSteps.doLogin();
+            
 
             homePageSteps.validateIsLoggedIn();
             System.Threading.Thread.Sleep(2000);

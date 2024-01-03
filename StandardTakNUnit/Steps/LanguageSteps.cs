@@ -36,6 +36,7 @@ namespace test.Steps.Pages.components
            ProfileLanguageOverviewComponent.clickAddLanguageButton();
 
             addAndUpdateLanguageComponent.addLanguage(language);
+           
             String acutalSuccessMessage = addAndUpdateLanguageComponent.getSuccessMessage();
 
             AssertHelper.assertAddLanguageSuccessMessage(language.getLanguage()+ " has been added to your languages", acutalSuccessMessage);

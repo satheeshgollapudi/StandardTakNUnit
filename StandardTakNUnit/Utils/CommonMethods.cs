@@ -11,7 +11,7 @@ namespace test.Utils
     public class CommonMethods
     {
         //Screenshots
-        //Screenshot
+        
 
         public class SaveScreenShotClass
         {

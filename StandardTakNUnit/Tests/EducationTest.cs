@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Threading;
 using test.Steps;
 using test.Utils;
 
@@ -24,13 +25,14 @@ namespace test
         [Test]
         public void givenLoggedInAndAddingNewEductaion_whenAddEducation_thenEducationIsAdded()
         {
-            //loginSteps.doLogin();
+           
 
             homePageSteps.validateIsLoggedIn();
             System.Threading.Thread.Sleep(2000);
             homePageSteps.clickOnEducationTab();
-
             educationSteps.addEducation();
+            Thread.Sleep(3000);
+            educationSteps.deleteEducation();
         }
 
 
@@ -38,13 +40,16 @@ namespace test
         [Test]
         public void givenLoggedInAndUpdateEductaion_thenEducationIsUpdated()
         {
-            //loginSteps.doLogin();
+           
 
             homePageSteps.validateIsLoggedIn();
             System.Threading.Thread.Sleep(2000);
             homePageSteps.clickOnEducationTab();
-
+            educationSteps.addEducation();
+            Thread.Sleep(3000);
             educationSteps.updateEducation();
+            Thread.Sleep(3000);
+            educationSteps.deleteEducation();
         }
 
         [Test]

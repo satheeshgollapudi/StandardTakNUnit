@@ -10,7 +10,7 @@ namespace test
         LoginSteps loginSteps;
         HomePageSteps homePageSteps;
 
-        public LoginTest()
+       public LoginTest()
         {
             loginSteps = new LoginSteps();
             homePageSteps = new HomePageSteps();

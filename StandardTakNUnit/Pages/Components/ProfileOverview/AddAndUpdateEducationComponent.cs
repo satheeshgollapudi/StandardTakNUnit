@@ -104,9 +104,7 @@ namespace test.Pages.Components
         {
             renderUpdateComponents();
 
-            //IWebElement updateButton = driver.FindElement(By.XPath("//td[text()='" + education.getTitle() + "']/ancestor::tbody/descendant::i[1]"));
-
-            //updateButton.Click();
+            
            
 
             //Enter record details

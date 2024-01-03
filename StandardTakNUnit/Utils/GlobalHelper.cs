@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Model;
 using AventStack.ExtentReports.Reporter;
@@ -22,8 +23,7 @@ namespace test.Utils
         [OneTimeSetUp]
         public static void Reports()
          {
-            //string projectPath = AppDomain.CurrentDomain.BaseDirectory;
-            //Console.WriteLine("Project Path: " + projectPath);
+           
 
             string reportPath = @"C:\Users\gskum\OneDrive\Desktop\StandardTakNUnit\StandardTakNUnit\Reports\Report.html"; // Specify the path where you want to save the report
 
@@ -42,17 +42,12 @@ namespace test.Utils
             driver = new ChromeDriver();
 
 
-            //string reportPath = @"C:\Users\gskum\OneDrive\Desktop\StandardTakNUnit\StandardTakNUnit\Reports\Report.html"; // Specify the path where you want to save the report
-
-            //htmlReporter = new ExtentHtmlReporter(reportPath);
-            //extent = new ExtentReports();
-
-            //extent.AttachReporter(htmlReporter);
+           
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
           
             driver.Navigate().GoToUrl("http://localhost:5000");
 
-            //Thread.Sleep(1000);
+            Thread.Sleep(1000);
 
           
 
@@ -74,7 +69,7 @@ namespace test.Utils
                 case TestStatus.Failed:
                     logstatus=Status.Fail;
                    test.Log(Status.Fail, "Failed");
-                    CommonMethods.SaveScreenShotClass.SaveScreenshot(driver, "LanguageAdded");
+                    CommonMethods.SaveScreenShotClass.SaveScreenshot(driver, TestContext.CurrentContext.Test.Name);
                     break;
 
                 case TestStatus.Passed:

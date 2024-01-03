@@ -12,7 +12,6 @@ namespace test.Pages.components
         private IWebElement languagesTitle;
         private IWebElement languagesSubHeading1;
         private IWebElement languagesSubHeading2;
-        //private IReadOnlyList<IWebElement> languages;
         private IWebElement addLanguageButton;
         private IWebElement inputLanguageTextBox;
         private IWebElement chooseLanguage;
