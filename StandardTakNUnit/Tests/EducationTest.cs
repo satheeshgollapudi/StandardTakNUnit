@@ -35,6 +35,19 @@ namespace test
             educationSteps.deleteEducation();
         }
 
+        [Test]
+        public void givenLoggedInAndAddingNewEductaion_whenAddEducation_thenExistingEducationIsAdded()
+        {
+
+
+            homePageSteps.validateIsLoggedIn();
+            System.Threading.Thread.Sleep(2000);
+            homePageSteps.clickOnEducationTab();
+            educationSteps.addEducation();
+            Thread.Sleep(3000);
+            educationSteps.deleteEducation();
+        }
+
 
 
         [Test]
