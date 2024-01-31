@@ -100,6 +100,27 @@ namespace test.Pages.Components
 
         }
 
+        public void addEducationNullValues(Model.EducationModel education)
+        {
+            renderAddComponents();
+
+            //Enter record details
+            //universityTextBox.SendKeys(education.getUniversity());
+            degreeTextBox.SendKeys(education.getDegree());
+            SelectElement countryOption = new SelectElement(countryDropDown);
+            countryOption.SelectByText(education.getCountry());
+            SelectElement titleOption = new SelectElement(titleDropDown);
+            titleOption.SelectByText(education.getTitle());
+            SelectElement graduationYearOption = new SelectElement(graduationYearDropDown);
+            graduationYearOption.SelectByText(education.getGraduationYear());
+
+            //Click on "Add" button.
+            addButton.Click();
+            Wait.WaitToExist(driver, "XPath", "//div[@class='ns-box-inner']", 5);
+
+
+        }
+
         public void updateEducation(Model.EducationModel education)
         {
             renderUpdateComponents();
