@@ -1,6 +1,9 @@
 ﻿
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using test.AssertHelpers;
 using test.Model;
 using test.Pages.components;
@@ -37,14 +40,135 @@ namespace test.Steps
             education.setTitle(er.title);
             education.setUniversity(er.university);
 
-            ProfileEducationOverviewComponent.clickAddEducationButton();
 
+            //Count rows of Education table
+            int Edu_totalrows = driver.FindElements(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody/tr")).Count;
+            //Validate with Education Title and Degree
+            //for (int i = 1; i <= Edu_totalrows; i++)
+            for (int i = Edu_totalrows; i >= 1; i--)
+            {
+                var actualTitle = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[3]")).Text;
+                var actualDegree = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[4]")).Text;
+                
+
+                string expectedTitle = education.getTitle();
+                string expectedDegree = education.getDegree();
+                
+
+
+                if (actualTitle == expectedTitle && actualDegree == expectedDegree)
+                {
+                    
+                    IWebElement deleteButton = driver.FindElement(By.XPath("//td[text()='" + education.getTitle() + "']/ancestor::tbody/descendant::i[2]"));
+                    deleteButton.Click();
+                    
+                }
+            }
+            Thread.Sleep(3000);
+            ProfileEducationOverviewComponent.clickAddEducationButton();
             addAndUpdateEducationComponent.addEducation(education);
             String acutalSuccessMessage = addAndUpdateEducationComponent.getSuccessMessage();
 
             AssertHelper.assertAddEducationSuccessMessage("Education has been added", acutalSuccessMessage);
+            Console.WriteLine(acutalSuccessMessage);
         }
 
+        public void addExistingEducation()
+        {
+            Model.EducationModel education = new Model.EducationModel();
+
+
+            string path = @"C:\Users\gskum\OneDrive\Desktop\StandardTakNUnit\StandardTakNUnit\TestData\Education.json";
+
+
+            JsonReader er = JsonReader.read(path);
+            education.setCountry(er.country);
+            education.setDegree(er.degree);
+            education.setGraduationYear(er.graduationYear);
+            education.setTitle(er.title);
+            education.setUniversity(er.university);
+
+            //Count rows of Education table
+            int Edu_totalrows = driver.FindElements(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody/tr")).Count;
+            //Validate with Education Title and Degree
+            for (int i = Edu_totalrows; i >= 1; i--)
+            {
+                var actualTitle = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[3]")).Text;
+                var actualDegree = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[4]")).Text;
+
+
+                string expectedTitle = education.getTitle();
+                string expectedDegree = education.getDegree();
+
+
+
+                if (actualTitle == expectedTitle && actualDegree == expectedDegree)
+                {
+
+                    IWebElement deleteButton = driver.FindElement(By.XPath("//td[text()='" + education.getTitle() + "']/ancestor::tbody/descendant::i[2]"));
+                    deleteButton.Click();
+                }
+            }
+            Thread.Sleep(3000);
+
+            ProfileEducationOverviewComponent.clickAddEducationButton();
+            addAndUpdateEducationComponent.addEducation(education);
+            Thread.Sleep(3000);
+            ProfileEducationOverviewComponent.clickAddEducationButton();
+            addAndUpdateEducationComponent.addEducation(education);
+
+            String acutalSuccessMessage = addAndUpdateEducationComponent.getSuccessMessage();
+            AssertHelper.assertAddEducationSuccessMessage("This information is already exist.", acutalSuccessMessage);
+            Console.WriteLine(acutalSuccessMessage);
+        }
+
+        public void addEducationNullValues()
+        {
+            Model.EducationModel education = new Model.EducationModel();
+
+
+            string path = @"C:\Users\gskum\OneDrive\Desktop\StandardTakNUnit\StandardTakNUnit\TestData\EducationNullValues.json";
+
+
+            JsonReader er = JsonReader.read(path);
+            education.setCountry(er.country);
+            education.setDegree(er.degree);
+            education.setGraduationYear(er.graduationYear);
+            education.setTitle(er.title);
+            education.setUniversity(er.university);
+
+            //Count rows of Education table
+            int Edu_totalrows = driver.FindElements(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody/tr")).Count;
+            //Validate with Education Title and Degree
+            for (int i = Edu_totalrows; i >= 1; i--)
+            {
+                var actualTitle = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[3]")).Text;
+                var actualDegree = driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//table[@class='ui fixed table']/tbody[" + i + "]/tr[1]/td[4]")).Text;
+
+
+                string expectedTitle = education.getTitle();
+                string expectedDegree = education.getDegree();
+
+
+
+                if (actualTitle == expectedTitle && actualDegree == expectedDegree)
+                {
+
+                    IWebElement deleteButton = driver.FindElement(By.XPath("//td[text()='" + education.getTitle() + "']/ancestor::tbody/descendant::i[2]"));
+                    deleteButton.Click();
+                }
+            }
+            Thread.Sleep(3000);
+
+
+            ProfileEducationOverviewComponent.clickAddEducationButton();
+
+            addAndUpdateEducationComponent.addEducationNullValues(education);
+            String acutalSuccessMessage = addAndUpdateEducationComponent.getSuccessMessage();
+
+            AssertHelper.assertAddEducationSuccessMessage("Please enter all the fields", acutalSuccessMessage);
+            Console.WriteLine(acutalSuccessMessage);
+        }
 
         public void updateEducation()
         {
@@ -62,6 +186,7 @@ namespace test.Steps
             education.setUniversity(er.university);
 
 
+
             IWebElement updateButton = driver.FindElement(By.XPath("//td[text()='" + education.getTitle() + "']/ancestor::tbody/descendant::i[1]"));
 
            updateButton.Click();
@@ -71,6 +196,7 @@ namespace test.Steps
             String acutalSuccessMessage = addAndUpdateEducationComponent.getSuccessMessage();
 
             AssertHelper.assertAddEducationSuccessMessage("Education as been updated", acutalSuccessMessage);
+            Console.WriteLine(acutalSuccessMessage);
         }
 
         public void deleteEducation()

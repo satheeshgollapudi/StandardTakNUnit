@@ -31,11 +31,33 @@ namespace test
             System.Threading.Thread.Sleep(2000);
             homePageSteps.clickOnEducationTab();
             educationSteps.addEducation();
-            Thread.Sleep(3000);
-            educationSteps.deleteEducation();
+            
         }
 
+        [Test]
+        public void givenLoggedInAndAddingNewEductaion_whenExistingEducationIsAdded_thenAlreadyExistMsg()
+        {
 
+
+            homePageSteps.validateIsLoggedIn();
+            System.Threading.Thread.Sleep(2000);
+            homePageSteps.clickOnEducationTab();
+            educationSteps.addExistingEducation();
+          
+        }
+
+        [Test]
+        public void givenLoggedInAndAddingNewEductaion_whenEducationValuesNull_thenErrorMsg()
+        {
+
+
+            homePageSteps.validateIsLoggedIn();
+            System.Threading.Thread.Sleep(2000);
+            homePageSteps.clickOnEducationTab();
+            educationSteps.addEducationNullValues();
+
+           
+        }
 
         [Test]
         public void givenLoggedInAndUpdateEductaion_thenEducationIsUpdated()
@@ -48,8 +70,7 @@ namespace test
             educationSteps.addEducation();
             Thread.Sleep(3000);
             educationSteps.updateEducation();
-            Thread.Sleep(3000);
-            educationSteps.deleteEducation();
+           
         }
 
         [Test]
